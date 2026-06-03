@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Site {
+  id        Int      @id @default(autoincrement())
+  name      String
+  handle    String   @unique
+  title     String?
+  body      String?
+  color     String?
+  createdAt DateTime @default(now())
+  domains   Domain[]
+}
+
+model Domain {
+  id         Int      @id @default(autoincrement())
+  siteId     Int
+  hostname   String   @unique
+  status     String
+  verificationToken String?
+  createdAt  DateTime @default(now())
+  verifiedAt DateTime?
+
+  site Site @relation(fields: [siteId], references: [id])
+}

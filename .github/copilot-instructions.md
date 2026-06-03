@@ -1,0 +1,12 @@
+- [x] Verify that the copilot-instructions.md file in the .github directory is created. (done)
+- [x] Clarify Project Requirements. (paths + frontend choice confirmed)
+- [x] Scaffold the Project. (project files created)
+- [x] Customize the Project. (routes, DB schema, UI, and Caddyfile added)
+- [x] Install Required Extensions. (none required)
+- [x] Compile the Project. (skipped; user did not request installs/builds)
+- [x] Create and Run Task. (not needed)
+- [x] Launch the Project. (not requested)
+- [x] Ensure Documentation is Complete. (README and instructions updated)
+- Work through each checklist item systematically.
+- Keep communication concise and focused.
+- Follow development best practices.

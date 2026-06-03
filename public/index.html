@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mini Site Builder</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <h1>Launch your mini site</h1>
+        <p>Create a handle and publish instantly.</p>
+      </header>
+      <form id="create-form" class="card">
+        <label>
+          Your name
+          <input name="name" type="text" placeholder="Alex" required />
+        </label>
+        <label>
+          Site handle
+          <input name="handle" type="text" placeholder="alex" required pattern="[a-z0-9-]+" />
+        </label>
+        <button type="submit">Create site</button>
+        <p id="form-error" class="error" role="alert"></p>
+      </form>
+    </main>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
