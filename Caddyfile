@@ -1,37 +1,47 @@
 {
-  email admin@MYDOMAIN.com
-  on_demand_tls {
-    ask http://localhost:3000/caddy/ask?domain={host}&token={env.ASK_SECRET}
-  }
+  email nitishkumar200485@gmail.com
 }
 
-# Wildcard for subdomains (requires DNS challenge and Name.com DNS module).
-# Set NAMEDOTCOM_USER, NAMEDOTCOM_TOKEN, NAMEDOTCOM_SERVER in the Caddy environment.
-# Use https://api.name.com for production or https://api.dev.name.com for testing.
-*.MYDOMAIN.com {
+# =========================
+# 1. MAIN SAAS WILDCARD DOMAIN
+# =========================
+*.plantgen.live {
+
   tls {
     dns namedotcom {
-      user {$NAMEDOTCOM_USER}
-      token {$NAMEDOTCOM_TOKEN}
-      server {$NAMEDOTCOM_SERVER}
+      user nitishkumar200485@gmail.com
+      token b3f1dec632437b8857dc0a8825dcdf6d639bbf61
+      server https://api.name.com
     }
   }
+
   reverse_proxy localhost:3000 {
     header_up Host {host}
+    header_up X-Real-IP {remote_host}
+    header_up X-Forwarded-For {remote_host}
   }
 }
 
-# Custom domains (on-demand TLS, verified via /caddy/ask).
+# =========================
+# 2. CUSTOM CLIENT DOMAINS (AUTO SSL)
+# =========================
 :443 {
+
   tls {
     on_demand
   }
+
   reverse_proxy localhost:3000 {
     header_up Host {host}
+    header_up X-Real-IP {remote_host}
+    header_up X-Forwarded-For {remote_host}
   }
 }
 
-# Optional HTTP redirect for custom domains.
+# =========================
+# 3. HTTP → HTTPS REDIRECT
+# =========================
 :80 {
   redir https://{host}{uri} permanent
 }
+
